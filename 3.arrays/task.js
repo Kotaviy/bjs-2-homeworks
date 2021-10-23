@@ -1,5 +1,5 @@
 function compareArrays(arr1, arr2) {
-  let result = arr1.length === arr2.length && arr1.every((id,elem) => arr1[id, elem] === arr2[id, elem]);
+  let result = arr1.length === arr2.length && arr1.every((i, elem) => arr1[elem] === arr2[elem]);
 
   return result;
 }
