@@ -8,7 +8,10 @@ class PrintEditionItem {
   }
 
   fix() {
-    return (this.state *= 1.5);
+    let newState = this.state *= 1.5;
+    if (newState > 100) {
+     return newState = 100;
+    }
   }
 
   get state() {
@@ -26,57 +29,68 @@ class PrintEditionItem {
   }
 }
 
-const sherlock = new PrintEditionItem('Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе', 2019, 1008);
-sherlock.state = 30;
-// console.log(sherlock.state);
+const sherlock = new PrintEditionItem(
+  'Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе',
+  2019,
+  1008
+);
+sherlock.state = 77;
+// console.log(sherlock);
+// console.log(sherlock.fix());
 
 class Magazine extends PrintEditionItem {
   constructor(name, releaseDate, pagesCount, state) {
-    super (name, releaseDate, pagesCount, state);
-    this.type = "magazine";
+    super(name, releaseDate, pagesCount, state);
+    this.type = 'magazine';
   }
 }
 
-const natGeo = new Magazine ("National Geographic", 2020, 78);
+const natGeo = new Magazine('National Geographic', 2020, 78);
 natGeo.state = 100;
 // console.log(natGeo.type);
 
 class Book extends PrintEditionItem {
   constructor(name, author, releaseDate, pagesCount, state) {
-    super (name, releaseDate, pagesCount, state);
+    super(name, releaseDate, pagesCount, state);
     this.author = author;
-    this.type = "book";
+    this.type = 'book';
   }
 }
-const shining = new Book ("Сияние", "Стивен Кинг", 1977, 447);
+const shining = new Book('Сияние', 'Стивен Кинг', 1977, 447);
 shining.state = 53;
 //console.log(shining.type);
 
 class NovelBook extends Book {
   constructor(name, author, releaseDate, pagesCount, state) {
-    super (name, author, releaseDate,pagesCount,state);
-    this.type = "novel";
+    super(name, author, releaseDate, pagesCount, state);
+    this.type = 'novel';
   }
 }
-const idiot = new NovelBook ("Идиот", "Фёдор Достоевский", 1868, 640);
+const idiot = new NovelBook('Идиот', 'Фёдор Достоевский', 1868, 640);
 idiot.state = 76;
 // console.log(idiot.type)
 
 class FantasticBook extends Book {
   constructor(name, author, releaseDate, pagesCount, state) {
-    super(name, author, releaseDate, pagesCount,state);
-    this.type = "fantastic";
+    super(name, author, releaseDate, pagesCount, state);
+    this.type = 'fantastic';
   }
 }
-const rings = new FantasticBook ("Властелин колец: возвращение короля", "Дж. Р.Р. Толкиен", 1955, 416);
-rings.state = 68;
-// console.log(rings)
+const rings = new FantasticBook(
+  'Властелин колец: возвращение короля',
+  'Дж. Р.Р. Толкиен',
+  1955,
+  416
+);
+rings.state = 88;
+// console.log(rings.type)
 
 class DetectiveBook extends Book {
   constructor(name, author, releaseDate, pagesCount, state) {
-    super (name, author, releaseDate, pagesCount, state);
-    this.type = "detective";
+    super(name, author, releaseDate, pagesCount, state);
+    this.type = 'detective';
   }
 }
-const orchid = new DetectiveBook ("Чёрная орхидея", "Джеймс Эллрой", 1987, 512);
-// console.log(orchid)
+const orchid = new DetectiveBook('Чёрная орхидея', 'Джеймс Эллрой', 1987, 512);
+orchid.state = 78;
+// console.log(orchid.type)
