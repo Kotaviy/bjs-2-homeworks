@@ -11,9 +11,12 @@ class PrintEditionItem {
     let newState = this.state *= 1.5;
     if (newState > 100) {
      return newState = 100;
+    } else {
+      newState < 100;
+      return newState;
     }
   }
-
+  
   get state() {
     return this._state;
   }
