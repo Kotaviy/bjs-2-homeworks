@@ -8,15 +8,15 @@ class PrintEditionItem {
   }
 
   fix() {
-    let newState = this.state *= 1.5;
+    let newState = (this.state *= 1.5);
     if (newState > 100) {
-     return newState = 100;
+      return (newState = 100);
     } else {
       newState < 100;
       return newState;
     }
   }
-  
+
   get state() {
     return this._state;
   }
@@ -37,9 +37,9 @@ const sherlock = new PrintEditionItem(
   2019,
   1008
 );
-sherlock.state = 77;
-// console.log(sherlock);
-// console.log(sherlock.fix());
+sherlock.state = 45;
+//console.log(sherlock);
+//console.log(sherlock.fix());
 
 class Magazine extends PrintEditionItem {
   constructor(name, releaseDate, pagesCount, state) {
@@ -53,29 +53,30 @@ natGeo.state = 100;
 // console.log(natGeo.type);
 
 class Book extends PrintEditionItem {
-  constructor(name, author, releaseDate, pagesCount, state) {
+  constructor(author, name, releaseDate, pagesCount, state) {
     super(name, releaseDate, pagesCount, state);
     this.author = author;
     this.type = 'book';
   }
 }
+
 const shining = new Book('Сияние', 'Стивен Кинг', 1977, 447);
 shining.state = 53;
-//console.log(shining.type);
+//console.log(shining.type)
 
 class NovelBook extends Book {
-  constructor(name, author, releaseDate, pagesCount, state) {
-    super(name, author, releaseDate, pagesCount, state);
+  constructor(author, name, releaseDate, pagesCount, state) {
+    super(author, name, releaseDate, pagesCount, state);
     this.type = 'novel';
   }
 }
 const idiot = new NovelBook('Идиот', 'Фёдор Достоевский', 1868, 640);
-idiot.state = 76;
-// console.log(idiot.type)
+idiot.state = 28;
+//console.log(idiot.type)
 
 class FantasticBook extends Book {
-  constructor(name, author, releaseDate, pagesCount, state) {
-    super(name, author, releaseDate, pagesCount, state);
+  constructor(author, name, releaseDate, pagesCount, state) {
+    super(author, name, releaseDate, pagesCount, state);
     this.type = 'fantastic';
   }
 }
@@ -85,15 +86,61 @@ const rings = new FantasticBook(
   1955,
   416
 );
-rings.state = 88;
-// console.log(rings.type)
+rings.state = 29;
+//console.log(rings.type)
 
 class DetectiveBook extends Book {
-  constructor(name, author, releaseDate, pagesCount, state) {
-    super(name, author, releaseDate, pagesCount, state);
+  constructor(author,name, releaseDate, pagesCount, state) {
+    super(author, name, releaseDate, pagesCount, state);
     this.type = 'detective';
   }
 }
 const orchid = new DetectiveBook('Чёрная орхидея', 'Джеймс Эллрой', 1987, 512);
-orchid.state = 78;
+orchid.state = 91;
 // console.log(orchid.type)
+
+class Library {
+  constructor(name, books) {
+    this.name = name;
+    this.books = [];
+  }
+  addBook(book) {
+    if (book.state > 30) {
+      this.books.push(book);
+    }
+  }
+  findBookBy(key, value) {
+    for (let i = 0; i < this.books.length; i++) {
+      let book = this.books[i];
+      if (book[key] === value) {
+        return book;
+      }
+    }
+    return null;
+  }
+  giveBookByName(bookName){
+   const bookToGive = this.findBookBy('name', bookName);
+   if (bookToGive === null){
+     return null;
+   }
+   const index = this.books.indexOf(bookToGive);
+   this.books.splice(index, 1);
+   return bookToGive;
+  }
+}
+
+const library = new Library('Библиотека им. Белинского');
+library.addBook(rings);
+library.addBook(orchid);
+const daughter = new NovelBook('А.С. Пушкин', 'Капитанская дочка', 1838, 320);
+daughter.state = 45;
+library.addBook(daughter);
+library.addBook(new Magazine('Юный натуралист', 1995, 50));
+library.addBook(shining);
+
+library.giveBookByName('Чёрная орхидея');
+orchid.state = 28;
+orchid.fix();
+library.addBook(orchid);
+
+console.log(library);
