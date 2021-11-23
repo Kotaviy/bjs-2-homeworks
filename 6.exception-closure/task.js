@@ -9,12 +9,11 @@ console.log(parseCount('123'));
 
 validateCount = (text1) => {
   try {
-    parseCount(text1);
+    return parseCount(text1);
   }
   catch(err) {
     return err;
   }
-  return parseCount(text1);
 }
 console.log(validateCount('34'));
 
@@ -27,9 +26,9 @@ class Triangle {
     this.c = c;
 
     if (
-        this.a + this.b < this.c ||
-        this.b + this.c < this.a ||
-        this.c + this.a < this.b
+        a + b < c ||
+        b + c < a ||
+        c + a < b
       )
       {
       throw new Error('Треугольник с такими сторонами не существует');
@@ -37,17 +36,19 @@ class Triangle {
   }
 
   getPerimeter() {
-    return this.a + this.b + this.c;
+    let p = this.a + this.b + this.c;
+    return p;
   }
   getArea() {
-    let semiPer = this.a + this.b + this.c / 2;
+    let semiPer = this.getPerimeter() / 2;
     let s = Math.sqrt(
       semiPer * (semiPer - this.a) * (semiPer - this.b) * (semiPer - this.c)
-    );
-    s = s.toFixed(3);
+    ).toFixed(3);
+    s = Number(s);
     return s;
   }
 }
+
 const myTriangle = new Triangle(2,4,4);
 myTriangle.getPerimeter();
 myTriangle.getArea();
